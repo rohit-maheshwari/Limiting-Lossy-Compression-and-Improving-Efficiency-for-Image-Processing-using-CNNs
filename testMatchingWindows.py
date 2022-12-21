@@ -5,7 +5,7 @@ import openingNP
 input = openingNP.arrCube
 shape = openingNP.shape
 
-file = open('filtersandcubes.csv', 'a')
+file = open('100percentmatch.csv', 'a')
 writer = csv.writer(file)
 
 f = open('filtersandcubes.txt', 'a')
@@ -451,6 +451,8 @@ for x in range(len(adjListCubes)):
 row = ([shape, finalNumFilters, zeroFilters, finalNumCubes, zeroCubes])
 
 writer.writerow(row)
+
+f.write('\n')
 
 f.write(str(adjListFilters))
 f.write("\nComputations Saved for Filters Iterations: " + str(finalNumFilters))
