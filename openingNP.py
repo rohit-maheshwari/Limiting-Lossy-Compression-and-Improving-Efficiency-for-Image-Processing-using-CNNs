@@ -3,7 +3,7 @@ import numpy as np
 # data = np.random.normal(0, 1, 100)
 # np.save('tensor.npy', data)
 
-arrCube = np.load('tensor8.npy')
+arrCube = np.load('tensor16.npy')
 
 print(arrCube)
 

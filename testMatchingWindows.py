@@ -1,10 +1,15 @@
 import numpy as np
+import csv
 import openingNP
 
 input = openingNP.arrCube
 
-file = open('filtersandcubes.txt', 'a')
-file.write("Location: 8\n")
+file = open('filtersandcubes.csv', 'a')
+writer = csv.writer(file)
+
+f = open('filtersandcubes.txt', 'a')
+
+# file.write("Location: 8\n")
 
 """
 EXPECTED OUTPUTS FOR HARD CODED INPUT:
@@ -441,14 +446,22 @@ for x in range(len(adjListFilters)):
 for x in range(len(adjListCubes)):
     finalNumCubes += len(adjListCubes[x])
 
-file.write(str(adjListFilters))
-file.write("\nComputations Saved for Filters Iterations: " + str(finalNumFilters))
-file.write("\nNumber of Zero Filters: " + str(zeroFilters))
 
-file.write('\n')
+row = ([finalNumFilters, zeroFilters, finalNumCubes, zeroCubes])
 
-file.write(str(adjListCubes))
-file.write("\nComputations Saved for Filters Cubes: " + str(finalNumCubes))
-file.write("\nNumber of Zero Cubes: " + str(zeroCubes))
+writer.writerow(row)
 
-file.write('\n')
+f.write(str(adjListFilters))
+f.write("\nComputations Saved for Filters Iterations: " + str(finalNumFilters))
+f.write("\nNumber of Zero Filters: " + str(zeroFilters))
+
+f.write('\n')
+
+f.write(str(adjListCubes))
+f.write("\nComputations Saved for Filters Cubes: " + str(finalNumCubes))
+f.write("\nNumber of Zero Cubes: " + str(zeroCubes))
+
+f.write('\n')
+
+file.close()
+f.close()
