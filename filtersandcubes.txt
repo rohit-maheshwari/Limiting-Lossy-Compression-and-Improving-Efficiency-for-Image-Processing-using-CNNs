@@ -4,4 +4,10 @@ Computations Saved for Filters Iterations: 0
 Number of Zero Filters: 16
 [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
 Computations Saved for Filters Cubes: 0
+Number of Zero Cubes: 4Location: 8
+[[[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []], [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]]
+Computations Saved for Filters Iterations: 0
+Number of Zero Filters: 16
+[[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []]
+Computations Saved for Filters Cubes: 0
 Number of Zero Cubes: 4
