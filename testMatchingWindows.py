@@ -450,3 +450,5 @@ file.write('\n')
 file.write(str(adjListCubes))
 file.write("\nComputations Saved for Filters Cubes: " + str(finalNumCubes))
 file.write("\nNumber of Zero Cubes: " + str(zeroCubes))
+
+file.write('\n')
