@@ -3,6 +3,7 @@ import csv
 import openingNP
 
 input = openingNP.arrCube
+shape = openingNP.shape
 
 file = open('filtersandcubes.csv', 'a')
 writer = csv.writer(file)
@@ -322,7 +323,7 @@ numFilters = len(input[0]) # 16
 numX = len(input[0][0]) # 3
 numY = len(input[0][0][0]) # 3
 
-cThreshold = 100
+perecentThreshold = 100
 
 def checkFilters(arr1, arr2):
 
@@ -447,7 +448,7 @@ for x in range(len(adjListCubes)):
     finalNumCubes += len(adjListCubes[x])
 
 
-row = ([finalNumFilters, zeroFilters, finalNumCubes, zeroCubes])
+row = ([shape, finalNumFilters, zeroFilters, finalNumCubes, zeroCubes])
 
 writer.writerow(row)
 

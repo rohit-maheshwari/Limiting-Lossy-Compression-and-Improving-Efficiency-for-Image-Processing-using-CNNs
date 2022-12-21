@@ -5,6 +5,8 @@ import numpy as np
 
 arrCube = np.load('tensor16.npy')
 
+shape = arrCube.shape
+
 print(arrCube)
 
 print(arrCube.shape)
