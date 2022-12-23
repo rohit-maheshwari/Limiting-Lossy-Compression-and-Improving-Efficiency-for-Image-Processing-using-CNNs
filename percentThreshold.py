@@ -5,29 +5,14 @@ import openingNP
 input = openingNP.arrCube
 shape = openingNP.shape
 
-file = open('100percentmatch.csv', 'a')
+file = open('66% match.csv', 'a')
 writer = csv.writer(file)
 
 f = open('filtersandcubes.txt', 'a')
 
-# file.write("Location: 8\n")
-
-"""
-EXPECTED OUTPUTS FOR HARD CODED INPUT:
-(see below)
-
-C1 F1 & C2 F1 = NO MATCH
-C1 F1 & C3 F1 = MATCH
-C2 F1 & C3 F1 = NO MATCH
-
-C1 F2 & C2 F2 = MATCH
-C1 F2 & C3 F2 = MATCH
-C2 F2 & C3 F2 = MATCH
-
-"""
 
 # input = [
-#     [ # CUBE 1
+#     [ # CUBE 0
 #         [
 #             [
 #                 1,
@@ -63,7 +48,7 @@ C2 F2 & C3 F2 = MATCH
 #             ]
 #         ]
 #     ], 
-#     [ # CUBE 2
+#     [ # CUBE 1
 #         [
 #             [
 #                 11,
@@ -79,6 +64,42 @@ C2 F2 & C3 F2 = MATCH
 #                 17,
 #                 18,
 #                 19
+#             ]
+#         ],
+#         [
+#             [
+#                 1,
+#                 2,
+#                 3
+#             ],
+#             [
+#                 4,
+#                 5,
+#                 6
+#             ],
+#             [
+#                 7,
+#                 8,
+#                 9
+#             ]
+#         ]
+#     ],
+#     [ # CUBE 2
+#         [
+#             [
+#                 1,
+#                 2,
+#                 3
+#             ],
+#             [
+#                 4,
+#                 5,
+#                 6
+#             ],
+#             [
+#                 7,
+#                 8,
+#                 9
 #             ]
 #         ],
 #         [
@@ -138,19 +159,19 @@ C2 F2 & C3 F2 = MATCH
 #     [ # CUBE 4
 #         [
 #             [
-#                 1,
-#                 2,
-#                 3
+#                 11,
+#                 12,
+#                 13
 #             ],
 #             [
-#                 4,
-#                 5,
-#                 6
+#                 14,
+#                 15,
+#                 16
 #             ],
 #             [
-#                 7,
-#                 8,
-#                 9
+#                 17,
+#                 18,
+#                 19
 #             ]
 #         ],
 #         [
@@ -174,19 +195,19 @@ C2 F2 & C3 F2 = MATCH
 #     [ # CUBE 5
 #         [
 #             [
-#                 11,
-#                 12,
-#                 13
+#                 0,
+#                 0,
+#                 0
 #             ],
 #             [
-#                 14,
-#                 15,
-#                 16
+#                 0,
+#                 0,
+#                 0
 #             ],
 #             [
-#                 17,
-#                 18,
-#                 19
+#                 0,
+#                 0,
+#                 0
 #             ]
 #         ],
 #         [
@@ -229,24 +250,24 @@ C2 F2 & C3 F2 = MATCH
 #             [
 #                 1,
 #                 2,
-#                 3
+#                 0
 #             ],
 #             [
-#                 4,
-#                 5,
-#                 6
+#                 0,
+#                 0,
+#                 0
 #             ],
 #             [
-#                 7,
-#                 8,
-#                 9
+#                 0,
+#                 0,
+#                 0
 #             ]
 #         ]
 #     ],
 #     [ # CUBE 7
 #         [
 #             [
-#                 0,
+#                 1,
 #                 0,
 #                 0
 #             ],
@@ -323,52 +344,62 @@ numFilters = len(input[0]) # 16
 numX = len(input[0][0]) # 3
 numY = len(input[0][0][0]) # 3
 
-perecentThreshold = 100
+percentThreshold = 66
 
 def checkFilters(arr1, arr2):
-
-    isValid = True
-    allZeros = True
 
     count = 0
 
     for row in range(numX):
         for col in range(numY):
-            if (arr1[row][col] != arr2[row][col]):
-                isValid = False
-            else:
+            if (arr1[row][col] == arr2[row][col]):
                 count += 1
-                if (arr1[row][col] != 0):
-                    allZeros = False
-
-
-
+    
     percentFilter = (100*count)/(numX * numY)
 
-
-    return isValid, allZeros, percentFilter
+    return percentFilter
 
 def checkCubes(arr1, arr2):
-
-    isValid = True
-    allZeros = True
 
     count = 0
     
     for filter in range(numFilters):
-        isValid, allZeros, percentFilter = checkFilters(arr1[filter], arr2[filter])
-        count += percentFilter*(numX*numY)
-
-        if (isValid == False):
-            break
+        percentFilter = checkFilters(arr1[filter], arr2[filter])
+        count += (percentFilter*(numX*numY))/100
     
     percentCube = (100*count)/(numFilters*numX*numY)
 
-    return isValid, allZeros, percentCube
+    return percentCube
+
+def zeroFilterFunction(arr):
+
+    allZeros = True
+
+    for i in range(len(arr)):
+        for j in range(len(arr[i])):
+            if (arr[i][j] != 0):
+                allZeros = False
+                return allZeros
+    
+    return allZeros
+
+
+def zeroCubeFunction(arr):
+
+    allZeros = True
+
+    for x in range(len(arr)):
+        for i in range(len(arr[x])):
+            for j in range(len(arr[x][i])):
+                if (arr[x][i][j] != 0):
+                    allZeros = False
+                    return allZeros
+
+    return allZeros
 
 zeroFilters = 0
 cubeMatching = 0
-isValidZeros = True
+isValidZeros = False
 
 adjListFilters = []
 
@@ -381,10 +412,10 @@ for filter in range(numFilters):
     for i in range(numCubes):
         excludes.append(0)
         adjListFilters[filter].append([])
-        for j in range(len(input[i][filter])):
-            isValidZeros = not np.any(input[i][filter][j])
-            if (not isValidZeros):
-                break
+        # for j in range(len(input[i][filter])):
+        isValidZeros = not np.any(input[i][filter])
+            # if (not isValidZeros):
+            #     break
         if (isValidZeros):
             zeroFilters += 1
 
@@ -392,13 +423,13 @@ for filter in range(numFilters):
         
         if (excludes[cube1] == 0):
 
-            isValidZeros = True
-
             for cube2 in range(cube1 + 1, numCubes):
 
                 if (excludes[cube2] == 0):
-                    isFilterEqual, allZeros, percentFilter = checkFilters(input[cube1][filter], input[cube2][filter])
-                    if (isFilterEqual and (not allZeros)):
+                    percentFilter = checkFilters(input[cube1][filter], input[cube2][filter])
+                    allZeros1 = zeroFilterFunction(input[cube1][filter])
+                    allZeros2 = zeroFilterFunction(input[cube2][filter])
+                    if ((percentFilter >= percentThreshold) and (not allZeros1 and not allZeros2)):
                         if (excludes[cube1] == 0):
                             adjListFilters[filter][cube1].append(cube2)
                         else:
@@ -414,10 +445,10 @@ zeroCubes = 0
 for i in range(numCubes):
     excludes.append(0)
     adjListCubes.append([])
-    for j in range(len(input[i])):
-        isValidZeros = not np.any(input[i][j])
-        if (not isValidZeros):
-            break
+    # for j in range(len(input[i])):
+    isValidZeros = not np.any(input[i])
+        # if (not isValidZeros):
+        #     break
     if (isValidZeros):
         zeroCubes += 1
 
@@ -425,10 +456,10 @@ for cube1 in range(numCubes - 1):
     if (excludes[cube1] == 0):
         for cube2 in range(cube1 + 1, numCubes):
             if (excludes[cube2] == 0):
-
-                isCubeEqual, allZeros, percentCube = checkCubes(input[cube1], input[cube2])
-
-                if (isCubeEqual and (not allZeros)):
+                percentCube = checkCubes(input[cube1], input[cube2])
+                allZeros1 = zeroCubeFunction(input[cube1])
+                allZeros2 = zeroCubeFunction(input[cube2])
+                if ((percentCube >= percentThreshold) and (not allZeros1 and not allZeros2)):
                     if (excludes[cube1] == 0):
                         adjListCubes[cube1].append(cube2)
                     else:
@@ -468,3 +499,8 @@ f.write('\n')
 
 file.close()
 f.close()
+
+# print(adjListFilters)
+# print(adjListCubes)
+
+# print (finalNumFilters, zeroFilters, finalNumCubes, zeroCubes)

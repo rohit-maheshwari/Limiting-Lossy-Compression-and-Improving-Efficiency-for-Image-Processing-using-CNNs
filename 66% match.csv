@@ -1,0 +1,10 @@
+Shape, Computations Saved for Filters Iterations,Number of Zero Filters,Computations Saved for Cube Iterations,Number of Zero Cubes
+"(16, 3, 3, 3)",16,16,4,4
+"(16, 3, 3, 16)",71,92,13,0
+"(16, 3, 3, 16)",104,63,6,0
+"(32, 3, 3, 16)",189,167,16,0
+"(32, 3, 3, 32)",450,264,16,0
+"(32, 1, 1, 16)",13,410,19,1
+"(64, 3, 3, 32)",940,522,36,0
+"(64, 3, 3, 64)",2208,829,33,2
+"(64, 1, 1, 32)",53,1638,43,2

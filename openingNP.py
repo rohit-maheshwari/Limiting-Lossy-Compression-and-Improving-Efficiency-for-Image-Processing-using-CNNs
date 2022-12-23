@@ -7,11 +7,13 @@ arrCube = np.load('tensor16.npy')
 
 shape = arrCube.shape
 
-print(arrCube)
+
 
 print(arrCube.shape)
 
 arrCube = np.rollaxis(arrCube, 3, 1)
+
+print(arrCube)
 
 print(arrCube.shape)
 
