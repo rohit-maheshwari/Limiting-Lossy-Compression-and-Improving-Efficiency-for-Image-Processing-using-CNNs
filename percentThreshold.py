@@ -1,350 +1,18 @@
-import numpy as np
+# import numpy as np
 import csv
 import openingNP
 
-input = openingNP.arrCube
-shape = openingNP.shape
 
-file = open('66% match.csv', 'a')
-writer = csv.writer(file)
+arrCube = openingNP.arrCube
 
-f = open('filtersandcubes.txt', 'a')
+type = openingNP.type
+percentThreshold = openingNP.percentThreshold
 
 
-# input = [
-#     [ # CUBE 0
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ]
-#     ], 
-#     [ # CUBE 1
-#         [
-#             [
-#                 11,
-#                 12,
-#                 13
-#             ],
-#             [
-#                 14,
-#                 15,
-#                 16
-#             ],
-#             [
-#                 17,
-#                 18,
-#                 19
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 2
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 3
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 4
-#         [
-#             [
-#                 11,
-#                 12,
-#                 13
-#             ],
-#             [
-#                 14,
-#                 15,
-#                 16
-#             ],
-#             [
-#                 17,
-#                 18,
-#                 19
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 5
-#         [
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 3
-#             ],
-#             [
-#                 4,
-#                 5,
-#                 6
-#             ],
-#             [
-#                 7,
-#                 8,
-#                 9
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 6
-#         [
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ],
-#         [
-#             [
-#                 1,
-#                 2,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 7
-#         [
-#             [
-#                 1,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ],
-#         [
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ]
-#     ],
-#     [ # CUBE 8
-#         [
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ],
-#         [
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ],
-#             [
-#                 0,
-#                 0,
-#                 0
-#             ]
-#         ]
-#     ],
-# ]
-
-
-numCubes = len(input) # 16
-numFilters = len(input[0]) # 16
-numX = len(input[0][0]) # 3
-numY = len(input[0][0][0]) # 3
-
-percentThreshold = 66
+numCubes = len(arrCube) # 16
+numFilters = len(arrCube[0]) # 16
+numX = len(arrCube[0][0]) # 3
+numY = len(arrCube[0][0][0]) # 3
 
 def checkFilters(arr1, arr2):
 
@@ -371,31 +39,38 @@ def checkCubes(arr1, arr2):
 
     return percentCube
 
-def zeroFilterFunction(arr):
+def zeroFilterFunction(arr, percent):
 
-    allZeros = True
+    count = 0
 
     for i in range(len(arr)):
         for j in range(len(arr[i])):
-            if (arr[i][j] != 0):
-                allZeros = False
-                return allZeros
+            if (arr[i][j] == 0):
+                count += 1
     
-    return allZeros
+    percentZero = (100*count)/(numX*numY)
+    if (percentZero >= percent):
+        return True
+    else: 
+        return False
 
 
-def zeroCubeFunction(arr):
+def zeroCubeFunction(arr, percent):
 
-    allZeros = True
+    count = 0
 
     for x in range(len(arr)):
         for i in range(len(arr[x])):
             for j in range(len(arr[x][i])):
-                if (arr[x][i][j] != 0):
-                    allZeros = False
-                    return allZeros
+                if (arr[x][i][j] == 0):
+                    count += 1
+                    
 
-    return allZeros
+    percentZero = (100*count)/(numFilters*numX*numY)
+    if (percentZero >= percent):
+        return True
+    else:
+        return False
 
 zeroFilters = 0
 cubeMatching = 0
@@ -412,10 +87,12 @@ for filter in range(numFilters):
     for i in range(numCubes):
         excludes.append(0)
         adjListFilters[filter].append([])
-        # for j in range(len(input[i][filter])):
-        isValidZeros = not np.any(input[i][filter])
+        # for j in range(len(arrCube[i][filter])):
+        # isValidZeros = not np.any(arrCube[i][filter])
             # if (not isValidZeros):
             #     break
+
+        isValidZeros = zeroFilterFunction(arrCube[i][filter], percentThreshold)
         if (isValidZeros):
             zeroFilters += 1
 
@@ -426,9 +103,9 @@ for filter in range(numFilters):
             for cube2 in range(cube1 + 1, numCubes):
 
                 if (excludes[cube2] == 0):
-                    percentFilter = checkFilters(input[cube1][filter], input[cube2][filter])
-                    allZeros1 = zeroFilterFunction(input[cube1][filter])
-                    allZeros2 = zeroFilterFunction(input[cube2][filter])
+                    percentFilter = checkFilters(arrCube[cube1][filter], arrCube[cube2][filter])
+                    allZeros1 = zeroFilterFunction(arrCube[cube1][filter], percentThreshold)
+                    allZeros2 = zeroFilterFunction(arrCube[cube2][filter], percentThreshold)
                     if ((percentFilter >= percentThreshold) and (not allZeros1 and not allZeros2)):
                         if (excludes[cube1] == 0):
                             adjListFilters[filter][cube1].append(cube2)
@@ -445,10 +122,11 @@ zeroCubes = 0
 for i in range(numCubes):
     excludes.append(0)
     adjListCubes.append([])
-    # for j in range(len(input[i])):
-    isValidZeros = not np.any(input[i])
+    # for j in range(len(arrCube[i])):
+    # isValidZeros = not np.any(arrCube[i])
         # if (not isValidZeros):
         #     break
+    isValidZeros = zeroCubeFunction(arrCube[i], percentThreshold)
     if (isValidZeros):
         zeroCubes += 1
 
@@ -456,9 +134,9 @@ for cube1 in range(numCubes - 1):
     if (excludes[cube1] == 0):
         for cube2 in range(cube1 + 1, numCubes):
             if (excludes[cube2] == 0):
-                percentCube = checkCubes(input[cube1], input[cube2])
-                allZeros1 = zeroCubeFunction(input[cube1])
-                allZeros2 = zeroCubeFunction(input[cube2])
+                percentCube = checkCubes(arrCube[cube1], arrCube[cube2])
+                allZeros1 = zeroCubeFunction(arrCube[cube1], percentThreshold)
+                allZeros2 = zeroCubeFunction(arrCube[cube2], percentThreshold)
                 if ((percentCube >= percentThreshold) and (not allZeros1 and not allZeros2)):
                     if (excludes[cube1] == 0):
                         adjListCubes[cube1].append(cube2)
@@ -478,29 +156,38 @@ for x in range(len(adjListFilters)):
 for x in range(len(adjListCubes)):
     finalNumCubes += len(adjListCubes[x])
 
+if (type == "tensor"):
 
-row = ([shape, finalNumFilters, zeroFilters, finalNumCubes, zeroCubes])
+    file = open(str(percentThreshold) + "% match.csv", 'a')
+    writer = csv.writer(file)
 
-writer.writerow(row)
+    f = open('filtersandcubes.txt', 'a')
 
-f.write('\n')
+    shape = openingNP.shape
 
-f.write(str(adjListFilters))
-f.write("\nComputations Saved for Filters Iterations: " + str(finalNumFilters))
-f.write("\nNumber of Zero Filters: " + str(zeroFilters))
+    row = ([shape, finalNumFilters, zeroFilters, finalNumCubes, zeroCubes])
 
-f.write('\n')
+    writer.writerow(row)
 
-f.write(str(adjListCubes))
-f.write("\nComputations Saved for Filters Cubes: " + str(finalNumCubes))
-f.write("\nNumber of Zero Cubes: " + str(zeroCubes))
+    f.write('\n')
 
-f.write('\n')
+    f.write(str(adjListFilters))
+    f.write("\nComputations Saved for Filters Iterations: " + str(finalNumFilters))
+    f.write("\nNumber of Zero Filters: " + str(zeroFilters))
 
-file.close()
-f.close()
+    f.write('\n')
 
-# print(adjListFilters)
-# print(adjListCubes)
+    f.write(str(adjListCubes))
+    f.write("\nComputations Saved for Filters Cubes: " + str(finalNumCubes))
+    f.write("\nNumber of Zero Cubes: " + str(zeroCubes))
 
-# print (finalNumFilters, zeroFilters, finalNumCubes, zeroCubes)
+    f.write('\n')
+
+    file.close()
+    f.close()
+
+else:
+    print(adjListFilters)
+    print(adjListCubes)
+
+    print (finalNumFilters, zeroFilters, finalNumCubes, zeroCubes)
